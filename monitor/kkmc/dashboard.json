@@ -1,0 +1,202 @@
+{
+	"version": 1,
+	"allow_edit": true,
+	"plugins": [],
+	"panes": [
+		{
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "picture",
+					"settings": {
+						"src": "\"http://www.kkmakerclub.com/wp-content/uploads/2015/11/12095100_1186560568037372_2244343938385208167_o.jpg\"",
+						"refresh": 0
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 2
+			},
+			"col_width": 2,
+			"widgets": [
+				{
+					"type": "html",
+					"settings": {
+						"html": "<h1><center>KKMC Monitor</center></h1>",
+						"height": 1
+					}
+				}
+			]
+		},
+		{
+			"width": 1,
+			"row": {
+				"3": 5,
+				"4": 5
+			},
+			"col": {
+				"3": 2,
+				"4": 2
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "gauge",
+					"settings": {
+						"title": "อุณหภูมิปัจจุบัน",
+						"value": "datasources[\"KKMC_NODE1\"][\"temp\"]",
+						"units": "°C",
+						"min_value": 0,
+						"max_value": "50"
+					}
+				},
+				{
+					"type": "html",
+					"settings": {
+						"html": "หกด",
+						"height": 0.5
+					}
+				},
+				{
+					"type": "html",
+					"settings": {
+						"html": "<center><p>อุณหภูมิอัพเดททุกครึ่งชั่วโมง<p></center>",
+						"height": 1
+					}
+				}
+			]
+		},
+		{
+			"title": "พิกัด",
+			"width": 1,
+			"row": {
+				"3": 5,
+				"4": 5
+			},
+			"col": {
+				"3": 3,
+				"4": 3
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "google_map",
+					"settings": {
+						"lat": "16.4412963",
+						"lon": "102.8197867"
+					}
+				}
+			]
+		},
+		{
+			"title": "สถานะประตู(ทดสอบ)",
+			"width": 1,
+			"row": {
+				"3": 11,
+				"4": 11
+			},
+			"col": {
+				"3": 1,
+				"4": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "indicator",
+					"settings": {
+						"title": "ประตู",
+						"value": "0",
+						"on_text": "ประตูปิด",
+						"off_text": "ประตูเปิด"
+					}
+				},
+				{
+					"type": "indicator",
+					"settings": {
+						"title": "ห้อง 1",
+						"value": "0",
+						"on_text": "ไม่มีคนอยู่",
+						"off_text": "มีคนอยู่"
+					}
+				},
+				{
+					"type": "indicator",
+					"settings": {
+						"title": "ห้อง 2",
+						"value": "0",
+						"on_text": "มีคนอยู่",
+						"off_text": "ไม่มีคนอยู่"
+					}
+				},
+				{
+					"type": "indicator",
+					"settings": {
+						"title": "ห้องกลาง",
+						"value": "0",
+						"on_text": "มีคนอยู่",
+						"off_text": "ไม่มีคนอยู่"
+					}
+				}
+			]
+		},
+		{
+			"title": "อุณหภูมิย้อนหลัง",
+			"width": 1,
+			"row": {
+				"3": 16,
+				"4": 16
+			},
+			"col": {
+				"3": 2,
+				"4": 2
+			},
+			"col_width": 2,
+			"widgets": [
+				{
+					"type": "jqPlotWidget",
+					"settings": {
+						"id": "chart1",
+						"data": "{\n    var temps = [];\n    for(var i=0;i<50;i++){\n        var dt = new Date(datasources[\"KKMakerTemp\"][\"with\"][i][\"created\"]);\n        //if(dt.getHours()<=21 && dt.getDate()<8 && dt.getMonth()<=10 && dt.getYear()<=2015){\n        //    continue;\n        //}\n        temps.push([dt.toString(),datasources[\"KKMakerTemp\"][\"with\"][i][\"content\"][\"temp\"]]);\n    } \n    return [temps];\n}",
+						"options": "{\n  series: [ {color:'orange'} ],\n  animate: true,\n  animateReplot: true,\n  cursor: {\n            show: true,\n            zoom: true,\n            looseZoom: true,\n            showTooltip: false\n  },\n  title:'Temperature History',\n    axes:{\n        xaxis:{\n            renderer:$.jqplot.DateAxisRenderer,\n            tickOptions:{formatString:'%b %#d, %#I %p'},\n\t\t\tmin:'November 08, 2015 8:00PM', \n\t\t\ttickInterval:'1 hours'\t            \n        },\n        yaxis: {\n        \ttickOptions: {\n                    formatString: \"%'d*C\"\n            }\n        }\n    }\n}",
+						"chartHeight": 300,
+						"chartWidth": 600,
+						"height": 5
+					}
+				}
+			]
+		}
+	],
+	"datasources": [
+		{
+			"name": "KKMC_NODE1",
+			"type": "dweet_io",
+			"settings": {
+				"thing_id": "kkmakerclub-test"
+			}
+		},
+		{
+			"name": "KKMakerTemp",
+			"type": "JSON",
+			"settings": {
+				"url": "http://dweet.io/get/dweets/for/kkmakerclub-test",
+				"use_thingproxy": false,
+				"refresh": 1500,
+				"method": "GET"
+			}
+		}
+	],
+	"columns": 3
+}
