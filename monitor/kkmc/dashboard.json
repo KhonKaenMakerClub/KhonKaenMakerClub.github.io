@@ -170,7 +170,7 @@
 					"settings": {
 						"id": "chart1",
 						"data": "{\n    var temps = [];\n    for(var i=0;i<50;i++){\n        var dt = new Date(datasources[\"KKMakerTemp\"][\"with\"][i][\"created\"]);\n        //if(dt.getHours()<=21 && dt.getDate()<8 && dt.getMonth()<=10 && dt.getYear()<=2015){\n        //    continue;\n        //}\n        temps.push([dt.toString(),datasources[\"KKMakerTemp\"][\"with\"][i][\"content\"][\"temp\"]]);\n    } \n    return [temps];\n}",
-						"options": "{\n  series: [ {color:'orange'} ],\n  animate: true,\n  animateReplot: true,\n  cursor: {\n            show: true,\n            zoom: true,\n            looseZoom: true,\n            showTooltip: false\n  },\n  title:'Temperature History',\n    axes:{\n        xaxis:{\n            renderer:$.jqplot.DateAxisRenderer,\n            tickOptions:{formatString:'%b %#d,%#I %p'},\n\t\t\tmin:'November 08, 2015 8:00PM', \n\t\t\ttickInterval:'2 hours'\t            \n        },\n        yaxis: {\n        \ttickOptions: {\n                    formatString: \"%'d*C\"\n            }\n        }\n    }\n}",
+						"options": "{\n  series: [ {color:'orange'} ],\n  animate: true,\n  animateReplot: true,\n  cursor: {\n            show: true,\n            zoom: true,\n            looseZoom: true,\n            showTooltip: false\n  },\n  title:'Temperature History',\n    axes:{\n        xaxis:{\n            renderer:$.jqplot.DateAxisRenderer,\n            tickOptions:{formatString:'%b %#d,%#I %p'},\n\t\n\t\t\ttickInterval:'5 hours'\t            \n        },\n        yaxis: {\n        \ttickOptions: {\n                    formatString: \"%'d*C\"\n            }\n        }\n    }\n}",
 						"chartHeight": 300,
 						"chartWidth": 600,
 						"height": 5

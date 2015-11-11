@@ -198,10 +198,12 @@
 		updateRefresh(currentSettings.refresh * 1000);
 
 		this.updateNow = function () {
+			alert("http://api.openweathermap.org/data/2.5/weather?q=" + encodeURIComponent(currentSettings.location) + "&units=" + currentSettings.units);
 			$.ajax({
-				url: "http://api.openweathermap.org/data/2.5/weather?q=" + encodeURIComponent(currentSettings.location) + "&units=" + currentSettings.units,
+				url: "http://api.openweathermap.org/data/2.5/weather?q=" + encodeURIComponent(currentSettings.location) + "&units=" + currentSettings.units,				
 				dataType: "JSONP",
 				success: function (data) {
+					alert(data);
 					// Rejigger our data into something easier to understand
 					var newData = {
 						place_name: data.name,
